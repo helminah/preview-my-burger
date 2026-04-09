@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MY Burger — Burgers craftés, ingrédients frais</title>
+<meta name="description" content="MY Burger, Burger bar artisanal à Dakar. Burgers craftés, ingrédients frais">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Oswald:wght@400;500;600&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--a:#E63946;--a2:#FF6B6B;--d:#0D0D0D;--w:#FAFAF8;--t:#1a1a1a;--tf:'Bebas Neue',Georgia,serif;--bf:'Inter',system-ui,sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--bf);font-weight:400;line-height:1.7;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+nav.scrolled{background:#0D0D0Dee;backdrop-filter:blur(16px)}
+.nav-name{font-family:var(--tf);font-size:1.3rem;color:#fff;font-weight:600}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.7);transition:color .3s}
+.nav-links a:hover{color:var(--a2)}
+.nav-cta{background:var(--a);color:#fff;padding:.6rem 1.5rem;border-radius:4px;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;transition:all .3s}
+.nav-cta:hover{background:var(--a2);transform:translateY(-1px)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1400&q=80') center/cover no-repeat}
+.hero-over{position:absolute;inset:0;background:linear-gradient(180deg,#0D0D0D88 0%,#0D0D0D 100%)}
+.hero-inner{position:relative;z-index:2;padding:2rem;max-width:700px}
+.hero-badge{display:inline-block;padding:.4rem 1rem;border:1px solid rgba(255,255,255,.2);border-radius:20px;font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:var(--a2);background:rgba(0,0,0,.3);backdrop-filter:blur(8px);margin-bottom:1.5rem}
+.hero-title{font-family:var(--tf);font-size:clamp(3rem,8vw,6rem);color:#fff;line-height:1;text-transform:uppercase; margin-bottom:1rem}
+.hero-title span{color:var(--a2)}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.8);max-width:500px;margin-bottom:2rem;line-height:1.8}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;border-radius:4px;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;transition:all .3s;border:none;cursor:pointer}
+.btn-fill{background:var(--a);color:#fff}
+.btn-fill:hover{background:var(--a2);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+.btn-ghost:hover{border-color:var(--a2);color:var(--a2)}
+
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:.6rem;padding:2rem}
+.pill{padding:.5rem 1.2rem;border-radius:20px;font-size:.75rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.8);transition:all .3s}
+.pill:hover{border-color:var(--a);color:var(--a2);background:rgba(255,255,255,.03)}
+
+/* SECTIONS */
+.sec{padding:clamp(3rem,8vw,6rem) clamp(1rem,4vw,3rem)}
+.container{max-width:1100px;margin:0 auto}
+.label{font-size:.6rem;text-transform:uppercase;letter-spacing:.25em;color:var(--a2);margin-bottom:.8rem;font-weight:600}
+.title{font-family:var(--tf);font-size:clamp(1.6rem,4vw,2.8rem);margin-bottom:1rem;color:#fff}
+.sub{font-size:.9rem;color:rgba(255,255,255,.6);max-width:550px;line-height:1.8}
+
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:2rem}
+.gal-item{border-radius:8px;overflow:hidden;aspect-ratio:1;position:relative}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.gal-item:hover img{transform:scale(1.08)}
+
+/* MENU GRID */
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:2rem}
+.menu-card{padding:1.5rem;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);transition:all .4s}
+.menu-card:hover{border-color:var(--a);background:rgba(255,255,255,.05);transform:translateY(-2px)}
+.menu-card h3{font-family:var(--tf);font-size:1.1rem;color:#fff;margin-bottom:.3rem}
+.menu-card p{font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:.5rem}
+.menu-price{color:var(--a2);font-weight:700;font-size:1rem}
+
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);margin-top:2rem}
+.stat{padding:2rem;text-align:center;background:#0D0D0D}
+.stat b{display:block;font-family:var(--tf);font-size:2rem;color:var(--a2)}
+.stat span{font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(255,255,255,.4)}
+
+/* CTA */
+.cta{text-align:center;background:linear-gradient(135deg,var(--a)11,#0D0D0D)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2rem}
+.info-item{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem}
+.info-icon{width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.info-text{font-size:.85rem;color:rgba(255,255,255,.7)}
+.info-text strong{display:block;color:#fff;margin-bottom:.2rem}
+.form input,.form textarea{width:100%;padding:.8rem;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#fff;font-family:var(--bf);font-size:.85rem;margin-bottom:.8rem;outline:none;transition:border-color .3s}
+.form input:focus,.form textarea:focus{border-color:var(--a2)}
+.form textarea{min-height:100px;resize:vertical}
+
+/* FOOTER */
+footer{background:#050505;padding:2rem;text-align:center;font-size:.65rem;color:rgba(255,255,255,.2)}
+footer a{color:var(--a2)}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .gallery{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .stats-bar{grid-template-columns:1fr}
+  .hero-title{font-size:clamp(2.2rem,10vw,4rem)}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-name">MY Burger</a>
+  <div class="nav-links">
+    <a href="#menu">Menu</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Commander</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-over"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">🍔 Craft Burgers</div>
+    <h1 class="hero-title">MY Burger<br><span>Burgers craftés, ingrédients frais</span></h1>
+    <p class="hero-sub">Burger bar artisanal à Dakar — des saveurs authentiques servies avec passion.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn btn-fill">🍽️ Voir le menu</a>
+      <a href="#contact" class="btn btn-ghost">📞 Commander</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="container">
+    <div class="label">Nos spécialités</div>
+    <div class="pills"><div class="pill">Burgers maison</div><div class="pill">Poulet crispy</div><div class="pill">Frites truffes</div><div class="pill">Milkshakes</div><div class="pill">Menu étudiant</div><div class="pill">Livraison</div></div>
+    <div class="stats-bar">
+      <div class="stat"><b>15+</b><span>Ans d'expérience</span></div>
+      <div class="stat"><b>500+</b><span>Clients/jour</span></div>
+      <div class="stat"><b>4.8★</b><span>Note Google</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="menu" style="background:rgba(255,255,255,.02)">
+  <div class="container">
+    <div class="label">Menu</div>
+    <h2 class="title">Nos plats signature</h2>
+    <div class="menu-grid">
+      <div class="menu-card"><h3>🍗 Dibi Poulet</h3><p>Poulet grillé au charbon, oignons, pain</p><div class="menu-price">2 500 FCFA</div></div>
+      <div class="menu-card"><h3>🥩 Dibi Mouton</h3><p>Mouton tendre, sauce tomate maison</p><div class="menu-price">3 500 FCFA</div></div>
+      <div class="menu-card"><h3>🍖 Brochettes</h3><p>Brochettes de bœuf marinées, attieké</p><div class="menu-price">2 000 FCFA</div></div>
+      <div class="menu-card"><h3>🍚 Riz Wolof</h3><p>Riz au gras traditionnel, légumes</p><div class="menu-price">1 500 FCFA</div></div>
+      <div class="menu-card"><h3>🥘 Thiéré</h3><p>Couscous de mil, sauce feuille</p><div class="menu-price">1 500 FCFA</div></div>
+      <div class="menu-card"><h3>🐟 Yassa Poisson</h3><p>Poisson braisé, sauce yassa citronnée</p><div class="menu-price">3 000 FCFA</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="galerie">
+  <div class="container">
+    <div class="label">Ambiance</div>
+    <h2 class="title">Nos plats en images</h2>
+    <div class="gallery">
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80" alt="Plat" loading="lazy"></div><div class="gal-item"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600&q=80" alt="Plat" loading="lazy"></div><div class="gal-item"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&q=80" alt="Plat" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec cta">
+  <div class="container">
+    <h2 class="title">Envie de my burger ?</h2>
+    <p class="sub" style="margin:0 auto 2rem">Passez commande ou réservez votre table. Ouvert tous les jours de 9h à minuit.</p>
+    <div class="hero-btns" style="justify-content:center">
+      <a href="tel:+221771234567" class="btn btn-fill">📞 Appeler</a>
+      <a href="#contact" class="btn btn-ghost">💬 WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="container">
+    <div class="label">Contact</div>
+    <h2 class="title">Trouvez-nous</h2>
+    <div class="contact-grid">
+      <div>
+        <div class="info-item"><div class="info-icon">📍</div><div class="info-text"><strong>Adresse</strong>Dakar, Sénégal</div></div>
+        <div class="info-item"><div class="info-icon">📞</div><div class="info-text"><strong>Téléphone</strong>+221 77 123 45 67</div></div>
+        <div class="info-item"><div class="info-icon">🕐</div><div class="info-text"><strong>Horaires</strong>Ouvert tous les jours : 9h - 00h</div></div>
+        <div class="info-item"><div class="info-icon">🚗</div><div class="info-text"><strong>Livraison</strong>Disponible dans tout Dakar</div></div>
+      </div>
+      <form class="form" onsubmit="event.preventDefault();alert('Merci ! On vous contacte.')">
+        <input type="text" placeholder="Votre nom" required>
+        <input type="tel" placeholder="Votre téléphone" required>
+        <textarea placeholder="Votre commande..."></textarea>
+        <button class="btn btn-fill" style="width:100%;justify-content:center">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 MY Burger — Dakar, Sénégal | Site créé par <a href="https://amevia.sn">Amevia</a>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)})
+</script>
+</body>
+</html>
