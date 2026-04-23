@@ -1,31 +1,24 @@
-/usr/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
-/usr/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MY Burger Dakar — Le vrai goût du burger gourmet</title>
-<meta name="description" content="Burgers 100% bœuf frais, frites maison, milkshakes. Commandez en ligne à Dakar.">
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MY Burger Dakar — Le vrai goût du burger</title>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--yellow:#FFDD00;--red:#FF0033;--green:#00FF88;--dark:#0a0a0a;--char:#151515;--text:#fff;--font1:'Permanent Marker',cursive;--font2:'Oswald',sans-serif;--font3:'Inter',sans-serif}
+:root{--yellow:#FFDD00;--red:#FF0033;--dark:#0a0a0a;--char:#151515;--text:#fff;--font1:'Permanent Marker',cursive;--font2:'Oswald',sans-serif;--font3:'Inter',sans-serif}
 html{scroll-behavior:smooth}
 body{font-family:var(--font3);background:var(--dark);color:var(--text);overflow-x:hidden}
-#neonCanvas{display:none}
 .nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:.4s}
 .nav.scrolled{background:rgba(10,10,10,.95);backdrop-filter:blur(15px);border-bottom:1px solid rgba(255,221,0,.1)}
 .logo{font-family:var(--font1);font-size:1.6rem;color:var(--yellow);transform:rotate(-2deg);text-shadow:3px 3px 0 var(--red)}
 .nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-family:var(--font2);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:.3s}
+.nav-links a{font-family:var(--font2);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:.3s;text-decoration:none}
 .nav-links a:hover{color:var(--yellow)}
-.btn{display:inline-block;padding:.8rem 2rem;font-family:var(--font2);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border-radius:4px;transition:.25s;cursor:pointer;border:none;position:relative;overflow:hidden}
-.btn-red{background:var(--red);color:#fff;box-shadow:0 6px20px rgba(255,0,51,.3)}
+.btn{display:inline-block;padding:.8rem 2rem;font-family:var(--font2);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border-radius:4px;transition:.25s;cursor:pointer;border:none;position:relative;overflow:hidden;text-decoration:none}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 6px 20px rgba(255,0,51,.3)}
 .btn-red:hover{background:#ff2244;transform:scale(1.05) rotate(-1deg)}
-.btn-yellow{background:var(--yellow);color:#000;box-shadow:0 6px20px rgba(255,221,0,.2)}
+.btn-yellow{background:var(--yellow);color:#000;box-shadow:0 6px 20px rgba(255,221,0,.2)}
 .btn-yellow:hover{background:#ffe033;transform:scale(1.05) rotate(1deg)}
 section{position:relative;z-index:1}
 .hero{min-height:100vh;display:flex;align-items:center;padding:7rem 3rem 4rem;position:relative;overflow:hidden}
@@ -37,49 +30,47 @@ section{position:relative;z-index:1}
 .hero h1 .yellow{color:var(--yellow);display:block;text-shadow:4px 4px 0 rgba(255,0,51,.4)}
 .hero p{color:rgba(255,255,255,.6);max-width:460px;margin-bottom:1.5rem;font-size:1.05rem;line-height:1.6}
 .hero-img{position:relative;display:flex;justify-content:center}
-.hero-img img{width:100%;max-width:400px;border-radius:20px;border:3px solid var(--yellow);box-shadow:0 0 40px rgba(255,221,0,.15),0 20px50px rgba(0,0,0,.5);animation:bounceBurger 5s ease-in-out infinite}
+.hero-img img{width:100%;max-width:400px;border-radius:20px;border:3px solid var(--yellow);box-shadow:0 0 40px rgba(255,221,0,.15),0 20px 50px rgba(0,0,0,.5);animation:bounceBurger 5s ease-in-out infinite}
 @keyframes bounceBurger{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(2deg)}}
 .hero-stat{display:flex;gap:2rem;margin-top:2rem}
 .hs-item h4{font-family:var(--font2);font-size:2rem;color:var(--yellow)}
 .hs-item p{font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase}
-
 .menu{padding:5rem 2rem;background:var(--char)}
 .menu h2{font-family:var(--font2);font-size:clamp(2rem,4vw,3.5rem);text-align:center;text-transform:uppercase;margin-bottom:3rem}
 .menu h2 span{color:var(--red)}
 .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto}
 .menu-card{background:var(--dark);border:2px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;transition:.3s;position:relative}
-.menu-card:hover{border-color:var(--yellow);transform:translateY(-6px) rotate(-.5deg);box-shadow:0 15px40px rgba(255,221,0,.1)}
+.menu-card:hover{border-color:var(--yellow);transform:translateY(-6px) rotate(-.5deg);box-shadow:0 15px 40px rgba(255,221,0,.1)}
 .menu-card img{width:100%;height:170px;object-fit:cover}
 .menu-body{padding:1.2rem}
 .menu-body h4{font-family:var(--font2);font-size:1.1rem;text-transform:uppercase;margin-bottom:.3rem}
 .menu-body p{font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:.8rem}
 .menu-price{font-family:var(--font2);color:var(--yellow);font-size:1.3rem}
 .wanted{position:absolute;top:8px;right:8px;background:var(--red);color:#fff;font-family:var(--font1);font-size:.55rem;padding:.2rem .5rem;transform:rotate(5deg)}
-
 .livraison{padding:5rem 2rem;text-align:center}
 .livraison h2{font-family:var(--font2);font-size:clamp(1.8rem,3.5vw,2.8rem);text-transform:uppercase;margin-bottom:1rem}
 .livraison p{color:rgba(255,255,255,.5);max-width:500px;margin:0 auto 2rem}
 .liv-zone{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}
 .zone-tag{font-family:var(--font2);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid rgba(255,255,255,.15);border-radius:100px;color:rgba(255,255,255,.6);transition:.3s}
 .zone-tag:hover{border-color:var(--yellow);color:var(--yellow);transform:scale(1.05)}
-
 footer{padding:3rem 2rem;text-align:center;color:rgba(255,255,255,.2);font-size:.8rem;border-top:1px solid rgba(255,255,255,.06)}
 .reveal{opacity:0;transform:translateY(30px)}
-@media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero-img{margin-top:2rem}.nav-links{display:none}}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero-img{margin-top:2rem}.nav-links{display:none}.burger-reveal{height:400vh!important}}
 
-/* --- Apple-style scroll-reactive tiled video --- */
 .burger-reveal{height:500vh;position:relative;background:var(--dark);z-index:2}
 .burger-reveal .sticky-wrap{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--dark)}
 #burgerCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-#burgerVideo{display:none}
+#burgerLoader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:5;background:var(--dark);transition:opacity .5s}
+#burgerLoader .spinner{width:40px;height:40px;border:3px solid rgba(255,221,0,.2);border-top-color:var(--yellow);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 .burger-reveal .reveal-text{position:relative;z-index:3;text-align:center;pointer-events:none;opacity:0;transform:translateY(30px);transition:none}
 .burger-reveal .reveal-text h2{font-family:var(--font2);font-size:clamp(2.2rem,5vw,4.5rem);text-transform:uppercase;line-height:.95;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,.8)}
 .burger-reveal .reveal-text h2 span{color:var(--yellow)}
 .burger-reveal .reveal-text p{color:rgba(255,255,255,.7);margin-top:.6rem;font-size:1.05rem;text-shadow:0 4px 20px rgba(0,0,0,.8)}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<canvas id="neonCanvas"></canvas>
 <nav class="nav">
   <a href="#" class="logo">MY Burger</a>
   <ul class="nav-links">
@@ -93,17 +84,17 @@ footer{padding:3rem 2rem;text-align:center;color:rgba(255,255,255,.2);font-size:
 <section class="hero">
   <div class="hero-grid">
     <div>
-      <div class="hero-tag reveal">Dakar — 100% Bœuf Frais</div>
+      <div class="hero-tag reveal">Dakar</div>
       <h1 class="reveal">Le Vrai<br><span class="red">Goût du</span><span class="yellow">Burger</span></h1>
-      <p class="reveal">Pain artisanal cuit sur place, viande 100% bœuf frais, sauces maison. Un burger qui vous colle au corps — et au cœur.</p>
+      <p class="reveal">Pain artisanal, viande 100% bœuf frais, sauces maison.</p>
       <div class="reveal" style="display:flex;gap:1rem;flex-wrap:wrap">
         <a href="#menu" class="btn btn-yellow">Voir le menu</a>
         <a href="tel:+221771234567" class="btn" style="border:2px solid rgba(255,255,255,.2);color:#fff">Appeler</a>
       </div>
       <div class="hero-stat reveal">
-        <div class="hs-item"><h4 data-count="15">0</h4><p>K burgers</p></div>
+        <div class="hs-item"><h4>15K</h4><p>burgers</p></div>
         <div class="hs-item"><h4>4.9</h4><p>Note Google</p></div>
-        <div class="hs-item"><h4 data-count="30">0</h4><p>Min livraison</p></div>
+        <div class="hs-item"><h4>30</h4><p>Min livraison</p></div>
       </div>
     </div>
     <div class="hero-img reveal">
@@ -114,6 +105,7 @@ footer{padding:3rem 2rem;text-align:center;color:rgba(255,255,255,.2);font-size:
 
 <section class="burger-reveal" id="experience">
   <div class="sticky-wrap">
+    <div id="burgerLoader"><div class="spinner"></div></div>
     <canvas id="burgerCanvas"></canvas>
     <div class="reveal-text" id="revealText">
       <h2>Chaque couche<br><span>compte</span></h2>
@@ -149,7 +141,7 @@ footer{padding:3rem 2rem;text-align:center;color:rgba(255,255,255,.2);font-size:
 <section class="livraison" id="livraison">
   <div class="reveal">
     <h2>Livraison <span style="color:var(--yellow)">Partout</span></h2>
-    <p>De Almadies à Pikine, on vous livre chaud en 30 minutes max. Commandez via WhatsApp.</p>
+    <p>De Almadies à Pikine, on vous livre chaud en 30 minutes max.</p>
     <a href="https://wa.me/221771234567" class="btn btn-red">Commander sur WhatsApp</a>
     <div class="liv-zone">
       <div class="zone-tag">Almadies</div><div class="zone-tag">Mermoz</div><div class="zone-tag">Ouakam</div>
@@ -161,155 +153,172 @@ footer{padding:3rem 2rem;text-align:center;color:rgba(255,255,255,.2);font-size:
 <footer>© 2026 MY Burger Dakar — Livraison 7j/7.</footer>
 
 <script>
-// Neon particles
-const c=document.getElementById('neonCanvas'),x=c.getContext('2d');
-let W,H,neons=[];
-function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
-window.addEventListener('resize',resize);resize();
-class Neon{constructor(){this.reset()}
-reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.4;this.vy=(Math.random()-.5)*.4;this.size=Math.random()*2+1;this.color=Math.random()>.5?'rgba(255,221,0,.4)':'rgba(255,0,51,.3)'}
-update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W)this.vx*=-1;if(this.y<0||this.y>H)this.vy*=-1}
-draw(){x.fillStyle=this.color;x.beginPath();x.arc(this.x,this.y,this.size,0,Math.PI*2);x.fill()}}
-for(let i=0;i<80;i++)neons.push(new Neon());
-function anim(){x.clearRect(0,0,W,H);neons.forEach(n=>{n.update();n.draw()});requestAnimationFrame(anim)}
-anim();
-
 window.addEventListener('scroll',()=>document.querySelector('.nav').classList.toggle('scrolled',window.scrollY>50));
-if(typeof gsap!=='undefined'){
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.utils.toArray('.reveal').forEach(el=>{
-    gsap.to(el,{opacity:1,y:0,duration:.7,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
-  });
-  gsap.utils.toArray('.hs-item h4[data-count]').forEach(num=>{
-    const t=parseInt(num.dataset.count);
-    gsap.to(num,{textContent:t,duration:2,ease:'power2.out',snap:{textContent:1},scrollTrigger:{trigger:num,start:'top 85%'}});
-  });
 
-  /* --- Apple-style scroll-reactive tiled frames (121 images, 10x10 tiles) --- */
-  (function(){
-    const canvas = document.getElementById('burgerCanvas');
-    const ctx = canvas.getContext('2d');
-    const revealText = document.getElementById('revealText');
-    if(!canvas) return;
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.transition='opacity .7s ease, transform .7s ease'; e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; obs.unobserve(e.target);} });
+},{threshold:.1});
+reveals.forEach(r=>obs.observe(r));
 
-    const TOTAL_FRAMES = 121;
-    const cols = 10;
-    const rows = 10;
-    const tiles = [];
-    for(let i=0;i<cols*rows;i++){
-      const cx = (i % cols) / Math.max(1, cols-1);
-      const cy = Math.floor(i / cols) / Math.max(1, rows-1);
-      const dist = Math.sqrt((cx-0.5)*(cx-0.5) + (cy-0.5)*(cy-0.5));
-      tiles.push({
-        ox: (Math.random()-0.5)*180,
-        oy: (Math.random()-0.5)*180,
-        rot: (Math.random()-0.5)*20,
-        delay: dist * 0.38 + Math.random()*0.08
-      });
-    }
+(function(){
+  const canvas = document.getElementById('burgerCanvas');
+  const loader = document.getElementById('burgerLoader');
+  const revealText = document.getElementById('revealText');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d', { alpha: false });
 
-    const off = document.createElement('canvas');
-    const octx = off.getContext('2d');
+  const TOTAL_FRAMES = 241;
+  const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+  const cols = isMobile ? 8 : 10;
+  const rows = isMobile ? 8 : 10;
+  const maxDPR = isMobile ? 1.5 : 2;
 
-    function resize(){
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      off.width = canvas.width;
-      off.height = canvas.height;
-      canvas.style.width = window.innerWidth + 'px';
-      canvas.style.height = window.innerHeight + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      octx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    let progress = 0;
-    let dpr = 1;
-    let images = [];
-    let loadedCount = 0;
-    let allReady = false;
-
-    for(let i=1;i<=TOTAL_FRAMES;i++){
-      const img = new Image();
-      const num = String(i).padStart(3,'0');
-      img.src = 'frames/frame_' + num + '.jpg';
-      img.onload = ()=>{ loadedCount++; if(loadedCount>=TOTAL_FRAMES) allReady=true; };
-      img.onerror = ()=>{ loadedCount++; if(loadedCount>=TOTAL_FRAMES) allReady=true; };
-      images.push(img);
-    }
-
-    function draw(){
-      if(!allReady){ requestAnimationFrame(draw); return; }
-      const W = window.innerWidth;
-      const H = window.innerHeight;
-
-      const frameIndex = Math.min(TOTAL_FRAMES-1, Math.floor(progress * TOTAL_FRAMES));
-      const img = images[frameIndex];
-      if(!img || !img.complete){ requestAnimationFrame(draw); return; }
-
-      const vScale = Math.max(W/img.naturalWidth, H/img.naturalHeight);
-      const vW = img.naturalWidth*vScale;
-      const vH = img.naturalHeight*vScale;
-      const vX = (W-vW)/2;
-      const vY = (H-vH)/2;
-
-      octx.clearRect(0,0,W,H);
-      octx.drawImage(img, vX, vY, vW, vH);
-
-      ctx.fillStyle = '#0a0a0a';
-      ctx.fillRect(0,0,W,H);
-
-      const tileW = W/cols;
-      const tileH = H/rows;
-      const p = Math.max(0, Math.min(1, progress));
-
-      for(let r=0; r<rows; r++){
-        for(let c=0; c<cols; c++){
-          const i = r*cols + c;
-          const t = tiles[i];
-          const localP = Math.max(0, Math.min(1, (p - t.delay) / Math.max(0.05, (1 - t.delay))));
-          const ease = 1 - Math.pow(1-localP, 3);
-
-          const sx = c*tileW;
-          const sy = r*tileH;
-          const dx = sx + t.ox*(1-ease);
-          const dy = sy + t.oy*(1-ease);
-          const rot = t.rot*(1-ease);
-          const sc = 0.25 + 0.75*ease;
-
-          ctx.save();
-          ctx.globalAlpha = ease;
-          ctx.translate(dx + tileW/2, dy + tileH/2);
-          ctx.rotate(rot*Math.PI/180);
-          ctx.scale(sc, sc);
-          ctx.drawImage(off, sx*dpr, sy*dpr, tileW*dpr, tileH*dpr, -tileW/2, -tileH/2, tileW, tileH);
-          ctx.restore();
-        }
-      }
-
-      if(revealText){
-        const txtP = p > 0.82 ? Math.min(1, (p-0.82)*6) : 0;
-        revealText.style.opacity = txtP;
-        revealText.style.transform = 'translateY(' + ((1-txtP)*30) + 'px)';
-      }
-
-      requestAnimationFrame(draw);
-    }
-    requestAnimationFrame(draw);
-
-    ScrollTrigger.create({
-      trigger: '.burger-reveal',
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 0.8,
-      onUpdate: function(self){
-        progress = self.progress;
-      }
+  const tiles = [];
+  for(let i=0;i<cols*rows;i++){
+    const cx = (i % cols) / Math.max(1, cols-1);
+    const cy = Math.floor(i / cols) / Math.max(1, rows-1);
+    const dist = Math.sqrt((cx-0.5)*(cx-0.5) + (cy-0.5)*(cy-0.5));
+    tiles.push({
+      ox: (Math.random()-0.5)*180,
+      oy: (Math.random()-0.5)*180,
+      rot: (Math.random()-0.5)*20,
+      delay: dist * 0.38 + Math.random()*0.08
     });
-  })();
-}
+  }
+
+  let dpr = Math.min(window.devicePixelRatio || 1, maxDPR);
+  let W = window.innerWidth;
+  let H = window.innerHeight;
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, maxDPR);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const images = new Array(TOTAL_FRAMES);
+  let loadedCount = 0;
+  let allReady = false;
+  const BATCH_SIZE = isMobile ? 12 : 24;
+
+  function loadBatch(start){
+    const end = Math.min(start + BATCH_SIZE, TOTAL_FRAMES);
+    for(let i=start; i<end; i++){
+      const img = new Image();
+      img.decoding = 'async';
+      const num = String(i+1).padStart(3,'0');
+      img.src = 'frames/frame_' + num + '.jpg';
+      img.onload = img.onerror = function(){
+        loadedCount++;
+        if(loadedCount >= TOTAL_FRAMES){
+          allReady = true;
+          if(loader){ loader.style.opacity='0'; setTimeout(()=>loader.style.display='none', 500); }
+        }
+      };
+      images[i] = img;
+    }
+    if(end < TOTAL_FRAMES) setTimeout(()=> loadBatch(end), isMobile ? 250 : 120);
+  }
+  loadBatch(0);
+
+  let progress = 0;
+  let targetProgress = 0;
+  const section = document.querySelector('.burger-reveal');
+
+  function updateScroll(){
+    if(!section) return;
+    const rect = section.getBoundingClientRect();
+    const sectionH = section.offsetHeight - window.innerHeight;
+    targetProgress = Math.max(0, Math.min(1, -rect.top / sectionH));
+  }
+  window.addEventListener('scroll', updateScroll, {passive:true});
+  updateScroll();
+
+  if(isMobile){
+    let touchStartY = 0;
+    const wrap = document.querySelector('.burger-reveal .sticky-wrap');
+    wrap.addEventListener('touchstart', e=>{ touchStartY = e.touches[0].clientY; }, {passive:true});
+    wrap.addEventListener('touchmove', e=>{
+      const delta = touchStartY - e.touches[0].clientY;
+    }, {passive:true});
+  }
+
+  let lastRAF = 0;
+  const rafThrottle = isMobile ? 33 : 16;
+
+  function draw(now){
+    requestAnimationFrame(draw);
+    if(!allReady) return;
+    if(now - lastRAF < rafThrottle) return;
+    lastRAF = now;
+
+    const lerpSpeed = isMobile ? 0.12 : 0.25;
+    progress += (targetProgress - progress) * lerpSpeed;
+
+    const frameIndex = Math.min(TOTAL_FRAMES-1, Math.floor(progress * TOTAL_FRAMES));
+    const img = images[frameIndex];
+    if(!img || !img.complete || img.naturalWidth === 0) return;
+
+    const imgW = img.naturalWidth;
+    const imgH = img.naturalHeight;
+    const vScale = Math.max(W/imgW, H/imgH);
+    const vW = imgW * vScale;
+    const vH = imgH * vScale;
+    const vX = (W - vW)/2;
+    const vY = (H - vH)/2;
+
+    ctx.fillStyle = '#0a0a0a';
+    ctx.fillRect(0, 0, W, H);
+
+    const tileW = W / cols;
+    const tileH = H / rows;
+    const p = Math.max(0, Math.min(1, progress));
+
+    for(let r=0; r<rows; r++){
+      for(let c=0; c<cols; c++){
+        const i = r*cols + c;
+        const t = tiles[i];
+        const localP = Math.max(0, Math.min(1, (p - t.delay) / Math.max(0.05, (1 - t.delay))));
+        const ease = 1 - Math.pow(1-localP, 3);
+
+        const sx = c * tileW;
+        const sy = r * tileH;
+        const dx = sx + t.ox * (1-ease);
+        const dy = sy + t.oy * (1-ease);
+        const rot = t.rot * (1-ease);
+        const sc = 0.25 + 0.75 * ease;
+
+        const srcX = vX + c * (vW/cols);
+        const srcY = vY + r * (vH/rows);
+        const srcW = vW/cols;
+        const srcH = vH/rows;
+
+        ctx.save();
+        ctx.globalAlpha = ease;
+        ctx.translate(dx + tileW/2, dy + tileH/2);
+        ctx.rotate(rot * Math.PI/180);
+        ctx.scale(sc, sc);
+        ctx.drawImage(img, srcX, srcY, srcW, srcH, -tileW/2, -tileH/2, tileW, tileH);
+        ctx.restore();
+      }
+    }
+
+    if(revealText){
+      const txtP = p > 0.82 ? Math.min(1, (p-0.82)*6) : 0;
+      revealText.style.opacity = txtP;
+      revealText.style.transform = 'translateY(' + ((1-txtP)*30) + 'px)';
+    }
+  }
+  requestAnimationFrame(draw);
+})();
 </script>
 </body>
 </html>
