@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MY Burger Dakar — Le vrai goût du burger</title>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -55,18 +55,49 @@ section{position:relative;z-index:1}
 .zone-tag:hover{border-color:var(--yellow);color:var(--yellow);transform:scale(1.05)}
 footer{padding:3rem 2rem;text-align:center;color:rgba(255,255,255,.2);font-size:.8rem;border-top:1px solid rgba(255,255,255,.06)}
 .reveal{opacity:0;transform:translateY(30px)}
-@media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero-img{margin-top:2rem}.nav-links{display:none}.burger-reveal{height:400vh!important}}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero-img{margin-top:2rem}.nav-links{display:none}}
 
+/* ========== APPLE-STYLE SCROLL-REACTIVE BURGER ========== */
 .burger-reveal{height:500vh;position:relative;background:var(--dark);z-index:2}
-.burger-reveal .sticky-wrap{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--dark)}
-#burgerCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-#burgerLoader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:5;background:var(--dark);transition:opacity .5s}
-#burgerLoader .spinner{width:40px;height:40px;border:3px solid rgba(255,221,0,.2);border-top-color:var(--yellow);border-radius:50%;animation:spin 1s linear infinite}
+.burger-reveal .sticky-wrap{
+  position:sticky;top:0;height:100vh;width:100%;
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:var(--dark);contain:paint layout;
+}
+#burgerCanvas{
+  position:absolute;inset:0;width:100%;height:100%;display:block;
+  will-change:contents;
+}
+#burgerLoader{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  z-index:5;background:var(--dark);transition:opacity .5s;pointer-events:none;
+}
+#burgerLoader .spinner{
+  width:40px;height:40px;border:3px solid rgba(255,221,0,.2);
+  border-top-color:var(--yellow);border-radius:50%;animation:spin 1s linear infinite;
+}
 @keyframes spin{to{transform:rotate(360deg)}}
-.burger-reveal .reveal-text{position:relative;z-index:3;text-align:center;pointer-events:none;opacity:0;transform:translateY(30px);transition:none}
-.burger-reveal .reveal-text h2{font-family:var(--font2);font-size:clamp(2.2rem,5vw,4.5rem);text-transform:uppercase;line-height:.95;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,.8)}
+.burger-reveal .reveal-text{
+  position:relative;z-index:3;text-align:center;pointer-events:none;
+  opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;
+}
+.burger-reveal .reveal-text.visible{opacity:1;transform:translateY(0)}
+.burger-reveal .reveal-text h2{
+  font-family:var(--font2);font-size:clamp(2.2rem,5vw,4.5rem);
+  text-transform:uppercase;line-height:.95;color:#fff;
+  text-shadow:0 10px 40px rgba(0,0,0,.8);
+}
 .burger-reveal .reveal-text h2 span{color:var(--yellow)}
-.burger-reveal .reveal-text p{color:rgba(255,255,255,.7);margin-top:.6rem;font-size:1.05rem;text-shadow:0 4px 20px rgba(0,0,0,.8)}
+.burger-reveal .reveal-text p{
+  color:rgba(255,255,255,.7);margin-top:.6rem;font-size:1.05rem;
+  text-shadow:0 4px 20px rgba(0,0,0,.8);
+}
+
+/* Mobile: shorter scroll distance */
+@media(max-width:768px){
+  .burger-reveal{height:300vh}
+  #burgerCanvas{will-change:auto}
+}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -153,36 +184,42 @@ footer{padding:3rem 2rem;text-align:center;color:rgba(255,255,255,.2);font-size:
 <footer>© 2026 MY Burger Dakar — Livraison 7j/7.</footer>
 
 <script>
+// ===== NAV SCROLL =====
 window.addEventListener('scroll',()=>document.querySelector('.nav').classList.toggle('scrolled',window.scrollY>50));
 
+// ===== REVEAL ANIMATIONS =====
 const reveals = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.transition='opacity .7s ease, transform .7s ease'; e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; obs.unobserve(e.target);} });
 },{threshold:.1});
 reveals.forEach(r=>obs.observe(r));
 
+// ===== APPLE-STYLE SCROLL-REACTIVE TILED FRAMES =====
 (function(){
   const canvas = document.getElementById('burgerCanvas');
   const loader = document.getElementById('burgerLoader');
   const revealText = document.getElementById('revealText');
-  if(!canvas) return;
+  const section = document.querySelector('.burger-reveal');
+  if(!canvas || !section) return;
+
   const ctx = canvas.getContext('2d', { alpha: false });
-
   const TOTAL_FRAMES = 241;
-  const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
-  const cols = isMobile ? 8 : 10;
-  const rows = isMobile ? 8 : 10;
-  const maxDPR = isMobile ? 1.5 : 2;
 
+  // Detect mobile more reliably
+  const isMobile = window.innerWidth < 768 || /iPhone|iPad|iPod|Android/.test(navigator.userAgent);
+  const cols = isMobile ? 5 : 10;
+  const rows = isMobile ? 5 : 10;
+  const maxDPR = isMobile ? 1 : 2; // Force DPR 1 on mobile = massive perf gain
+
+  // Tile data: just offset + delay, NO rotation (too expensive on mobile GPU)
   const tiles = [];
   for(let i=0;i<cols*rows;i++){
     const cx = (i % cols) / Math.max(1, cols-1);
     const cy = Math.floor(i / cols) / Math.max(1, rows-1);
     const dist = Math.sqrt((cx-0.5)*(cx-0.5) + (cy-0.5)*(cy-0.5));
     tiles.push({
-      ox: (Math.random()-0.5)*180,
-      oy: (Math.random()-0.5)*180,
-      rot: (Math.random()-0.5)*20,
+      ox: (Math.random()-0.5)* (isMobile ? 80 : 180),
+      oy: (Math.random()-0.5)* (isMobile ? 80 : 180),
       delay: dist * 0.38 + Math.random()*0.08
     });
   }
@@ -195,8 +232,8 @@ reveals.forEach(r=>obs.observe(r));
     dpr = Math.min(window.devicePixelRatio || 1, maxDPR);
     W = window.innerWidth;
     H = window.innerHeight;
-    canvas.width = W * dpr;
-    canvas.height = H * dpr;
+    canvas.width = Math.floor(W * dpr);
+    canvas.height = Math.floor(H * dpr);
     canvas.style.width = W + 'px';
     canvas.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -204,37 +241,34 @@ reveals.forEach(r=>obs.observe(r));
   window.addEventListener('resize', resize);
   resize();
 
+  // ===== FRAME LOADING (parallel, no batching) =====
   const images = new Array(TOTAL_FRAMES);
   let loadedCount = 0;
   let allReady = false;
-  const BATCH_SIZE = isMobile ? 12 : 24;
 
-  function loadBatch(start){
-    const end = Math.min(start + BATCH_SIZE, TOTAL_FRAMES);
-    for(let i=start; i<end; i++){
-      const img = new Image();
-      img.decoding = 'async';
-      const num = String(i+1).padStart(3,'0');
-      img.src = 'frames/frame_' + num + '.jpg';
-      img.onload = img.onerror = function(){
-        loadedCount++;
-        if(loadedCount >= TOTAL_FRAMES){
-          allReady = true;
-          if(loader){ loader.style.opacity='0'; setTimeout(()=>loader.style.display='none', 500); }
-        }
-      };
-      images[i] = img;
+  function onImgReady(){
+    loadedCount++;
+    if(loadedCount >= TOTAL_FRAMES){
+      allReady = true;
+      if(loader){ loader.style.opacity='0'; setTimeout(()=>loader.remove(), 500); }
     }
-    if(end < TOTAL_FRAMES) setTimeout(()=> loadBatch(end), isMobile ? 250 : 120);
   }
-  loadBatch(0);
 
+  // Load first 30 immediately for fast start, rest in background
+  for(let i=0; i<TOTAL_FRAMES; i++){
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = 'frames/frame_' + String(i+1).padStart(3,'0') + '.jpg';
+    img.onload = onImgReady;
+    img.onerror = onImgReady;
+    images[i] = img;
+  }
+
+  // ===== SCROLL PROGRESS =====
   let progress = 0;
   let targetProgress = 0;
-  const section = document.querySelector('.burger-reveal');
 
   function updateScroll(){
-    if(!section) return;
     const rect = section.getBoundingClientRect();
     const sectionH = section.offsetHeight - window.innerHeight;
     targetProgress = Math.max(0, Math.min(1, -rect.top / sectionH));
@@ -242,27 +276,22 @@ reveals.forEach(r=>obs.observe(r));
   window.addEventListener('scroll', updateScroll, {passive:true});
   updateScroll();
 
-  if(isMobile){
-    let touchStartY = 0;
-    const wrap = document.querySelector('.burger-reveal .sticky-wrap');
-    wrap.addEventListener('touchstart', e=>{ touchStartY = e.touches[0].clientY; }, {passive:true});
-    wrap.addEventListener('touchmove', e=>{
-      const delta = touchStartY - e.touches[0].clientY;
-    }, {passive:true});
-  }
+  // ===== INTERSECTION OBSERVER: PAUSE RAF WHEN OFFSCREEN =====
+  let isVisible = false;
+  const visObs = new IntersectionObserver((entries)=>{
+    isVisible = entries[0].isIntersecting;
+  }, {threshold:0});
+  visObs.observe(section);
 
-  let lastRAF = 0;
-  const rafThrottle = isMobile ? 33 : 16;
+  // ===== RENDER LOOP =====
+  let rafId = 0;
+  const lerpSpeed = isMobile ? 0.25 : 0.35;
 
-  function draw(now){
-    requestAnimationFrame(draw);
-    if(!allReady) return;
-    if(now - lastRAF < rafThrottle) return;
-    lastRAF = now;
+  function draw(){
+    rafId = requestAnimationFrame(draw);
+    if(!isVisible || !allReady) return;
 
-    const lerpSpeed = isMobile ? 0.12 : 0.25;
     progress += (targetProgress - progress) * lerpSpeed;
-
     const frameIndex = Math.min(TOTAL_FRAMES-1, Math.floor(progress * TOTAL_FRAMES));
     const img = images[frameIndex];
     if(!img || !img.complete || img.naturalWidth === 0) return;
@@ -275,8 +304,7 @@ reveals.forEach(r=>obs.observe(r));
     const vX = (W - vW)/2;
     const vY = (H - vH)/2;
 
-    ctx.fillStyle = '#0a0a0a';
-    ctx.fillRect(0, 0, W, H);
+    ctx.clearRect(0, 0, W, H);
 
     const tileW = W / cols;
     const tileH = H / rows;
@@ -289,34 +317,36 @@ reveals.forEach(r=>obs.observe(r));
         const localP = Math.max(0, Math.min(1, (p - t.delay) / Math.max(0.05, (1 - t.delay))));
         const ease = 1 - Math.pow(1-localP, 3);
 
-        const sx = c * tileW;
-        const sy = r * tileH;
-        const dx = sx + t.ox * (1-ease);
-        const dy = sy + t.oy * (1-ease);
-        const rot = t.rot * (1-ease);
-        const sc = 0.25 + 0.75 * ease;
+        const dx = c*tileW + t.ox*(1-ease);
+        const dy = r*tileH + t.oy*(1-ease);
+        const sc = 0.3 + 0.7*ease;
+        const alpha = ease;
 
-        const srcX = vX + c * (vW/cols);
-        const srcY = vY + r * (vH/rows);
+        const srcX = vX + c*(vW/cols);
+        const srcY = vY + r*(vH/rows);
         const srcW = vW/cols;
         const srcH = vH/rows;
 
-        ctx.save();
-        ctx.globalAlpha = ease;
-        ctx.translate(dx + tileW/2, dy + tileH/2);
-        ctx.rotate(rot * Math.PI/180);
-        ctx.scale(sc, sc);
-        ctx.drawImage(img, srcX, srcY, srcW, srcH, -tileW/2, -tileH/2, tileW, tileH);
-        ctx.restore();
+        // Simplified: no rotation (saves GPU), just translate + scale
+        const tw = tileW*sc;
+        const th = tileH*sc;
+        ctx.globalAlpha = alpha;
+        ctx.drawImage(
+          img,
+          srcX, srcY, srcW, srcH,
+          dx + (tileW-tw)/2, dy + (tileH-th)/2, tw, th
+        );
       }
     }
+    ctx.globalAlpha = 1;
 
+    // Text reveal via CSS class (GPU-composited, not JS)
     if(revealText){
-      const txtP = p > 0.82 ? Math.min(1, (p-0.82)*6) : 0;
-      revealText.style.opacity = txtP;
-      revealText.style.transform = 'translateY(' + ((1-txtP)*30) + 'px)';
+      if(p > 0.82) revealText.classList.add('visible');
+      else revealText.classList.remove('visible');
     }
   }
+
   requestAnimationFrame(draw);
 })();
 </script>
