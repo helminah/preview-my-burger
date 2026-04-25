@@ -3,351 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MY Burger Dakar — Le vrai goût du burger</title>
+<title>MY Burger Dakar — Burger premium, chaud, local</title>
+<meta name="description" content="MY Burger Dakar : burgers gourmets, ingrédients frais, livraison rapide à Dakar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--yellow:#FFDD00;--red:#FF0033;--dark:#0a0a0a;--char:#151515;--text:#fff;--font1:'Permanent Marker',cursive;--font2:'Oswald',sans-serif;--font3:'Inter',sans-serif}
-html{scroll-behavior:smooth}
-body{font-family:var(--font3);background:var(--dark);color:var(--text);overflow-x:hidden}
-.nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:.4s}
-.nav.scrolled{background:rgba(10,10,10,.95);backdrop-filter:blur(15px);border-bottom:1px solid rgba(255,221,0,.1)}
-.logo{font-family:var(--font1);font-size:1.6rem;color:var(--yellow);transform:rotate(-2deg);text-shadow:3px 3px 0 var(--red)}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-family:var(--font2);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:.3s;text-decoration:none}
-.nav-links a:hover{color:var(--yellow)}
-.btn{display:inline-block;padding:.8rem 2rem;font-family:var(--font2);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border-radius:4px;transition:.25s;cursor:pointer;border:none;position:relative;overflow:hidden;text-decoration:none}
-.btn-red{background:var(--red);color:#fff;box-shadow:0 6px 20px rgba(255,0,51,.3)}
-.btn-red:hover{background:#ff2244;transform:scale(1.05) rotate(-1deg)}
-.btn-yellow{background:var(--yellow);color:#000;box-shadow:0 6px 20px rgba(255,221,0,.2)}
-.btn-yellow:hover{background:#ffe033;transform:scale(1.05) rotate(1deg)}
-section{position:relative;z-index:1}
-.hero{min-height:100vh;display:flex;align-items:center;padding:7rem 3rem 4rem;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,0,51,.12),transparent 50%),radial-gradient(circle at 70% 50%,rgba(255,221,0,.1),transparent 50%)}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto;align-items:center;width:100%}
-.hero-tag{display:inline-block;padding:.3rem .9rem;border:2px dashed var(--yellow);color:var(--yellow);font-family:var(--font2);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.2rem;transform:rotate(-1deg)}
-.hero h1{font-family:var(--font2);font-size:clamp(3rem,6vw,6rem);line-height:.95;text-transform:uppercase;margin-bottom:1rem}
-.hero h1 .red{color:var(--red);display:block}
-.hero h1 .yellow{color:var(--yellow);display:block;text-shadow:4px 4px 0 rgba(255,0,51,.4)}
-.hero p{color:rgba(255,255,255,.6);max-width:460px;margin-bottom:1.5rem;font-size:1.05rem;line-height:1.6}
-.hero-img{position:relative;display:flex;justify-content:center}
-.hero-img img{width:100%;max-width:400px;border-radius:20px;border:3px solid var(--yellow);box-shadow:0 0 40px rgba(255,221,0,.15),0 20px 50px rgba(0,0,0,.5);animation:bounceBurger 5s ease-in-out infinite}
-@keyframes bounceBurger{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(2deg)}}
-.hero-stat{display:flex;gap:2rem;margin-top:2rem}
-.hs-item h4{font-family:var(--font2);font-size:2rem;color:var(--yellow)}
-.hs-item p{font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase}
-.menu{padding:5rem 2rem;background:var(--char)}
-.menu h2{font-family:var(--font2);font-size:clamp(2rem,4vw,3.5rem);text-align:center;text-transform:uppercase;margin-bottom:3rem}
-.menu h2 span{color:var(--red)}
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto}
-.menu-card{background:var(--dark);border:2px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;transition:.3s;position:relative}
-.menu-card:hover{border-color:var(--yellow);transform:translateY(-6px) rotate(-.5deg);box-shadow:0 15px 40px rgba(255,221,0,.1)}
-.menu-card img{width:100%;height:170px;object-fit:cover}
-.menu-body{padding:1.2rem}
-.menu-body h4{font-family:var(--font2);font-size:1.1rem;text-transform:uppercase;margin-bottom:.3rem}
-.menu-body p{font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:.8rem}
-.menu-price{font-family:var(--font2);color:var(--yellow);font-size:1.3rem}
-.wanted{position:absolute;top:8px;right:8px;background:var(--red);color:#fff;font-family:var(--font1);font-size:.55rem;padding:.2rem .5rem;transform:rotate(5deg)}
-.livraison{padding:5rem 2rem;text-align:center}
-.livraison h2{font-family:var(--font2);font-size:clamp(1.8rem,3.5vw,2.8rem);text-transform:uppercase;margin-bottom:1rem}
-.livraison p{color:rgba(255,255,255,.5);max-width:500px;margin:0 auto 2rem}
-.liv-zone{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}
-.zone-tag{font-family:var(--font2);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid rgba(255,255,255,.15);border-radius:100px;color:rgba(255,255,255,.6);transition:.3s}
-.zone-tag:hover{border-color:var(--yellow);color:var(--yellow);transform:scale(1.05)}
-footer{padding:3rem 2rem;text-align:center;color:rgba(255,255,255,.2);font-size:.8rem;border-top:1px solid rgba(255,255,255,.06)}
-.reveal{opacity:0;transform:translateY(30px)}
-@media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero-img{margin-top:2rem}.nav-links{display:none}}
-
-/* ========== APPLE-STYLE SCROLL-REACTIVE BURGER ========== */
-.burger-reveal{height:500vh;position:relative;background:var(--dark);z-index:2}
-.burger-reveal .sticky-wrap{
-  position:sticky;top:0;height:100vh;width:100%;
-  overflow:hidden;display:flex;align-items:center;justify-content:center;
-  background:var(--dark);contain:paint layout;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fff4df;--cream2:#f7dfb8;--ink:#17110d;--muted:#725d4a;--red:#e8212d;--yellow:#ffd12d;--green:#178944;--brown:#5b2d18;--char:#24150e;--white:#fffdf8;
+  --shadow:0 28px 80px rgba(73,37,13,.24);--ease:cubic-bezier(.16,1,.3,1)
 }
-#burgerCanvas{
-  position:absolute;inset:0;width:100%;height:100%;display:block;
-  will-change:contents;
-}
-#burgerLoader{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  z-index:5;background:var(--dark);transition:opacity .5s;pointer-events:none;
-}
-#burgerLoader .spinner{
-  width:40px;height:40px;border:3px solid rgba(255,221,0,.2);
-  border-top-color:var(--yellow);border-radius:50%;animation:spin 1s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-.burger-reveal .reveal-text{
-  position:relative;z-index:3;text-align:center;pointer-events:none;
-  opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;
-}
-.burger-reveal .reveal-text.visible{opacity:1;transform:translateY(0)}
-.burger-reveal .reveal-text h2{
-  font-family:var(--font2);font-size:clamp(2.2rem,5vw,4.5rem);
-  text-transform:uppercase;line-height:.95;color:#fff;
-  text-shadow:0 10px 40px rgba(0,0,0,.8);
-}
-.burger-reveal .reveal-text h2 span{color:var(--yellow)}
-.burger-reveal .reveal-text p{
-  color:rgba(255,255,255,.7);margin-top:.6rem;font-size:1.05rem;
-  text-shadow:0 4px 20px rgba(0,0,0,.8);
-}
-
-/* Mobile: shorter scroll distance */
-@media(max-width:768px){
-  .burger-reveal{height:300vh}
-  #burgerCanvas{will-change:auto}
-}
+html{scroll-behavior:smooth;background:var(--cream)}
+body{font-family:Inter,system-ui,sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}.no-break{white-space:nowrap}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.nav{position:fixed;top:0;left:0;width:100%;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,4vw,54px);transition:background .3s ease,box-shadow .3s ease,border .3s ease}
+.nav.scrolled{background:rgba(255,244,223,.94);box-shadow:0 12px 40px rgba(53,29,10,.08);border-bottom:1px solid rgba(91,45,24,.08)}
+.logo{font-family:'Permanent Marker',cursive;font-size:clamp(1.3rem,2vw,1.9rem);color:var(--red);transform:rotate(-2deg);text-shadow:2px 2px 0 var(--yellow)}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}.nav-links a{font-weight:800;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(23,17,13,.68);position:relative}.nav-links a::after{content:'';position:absolute;left:0;bottom:-7px;width:100%;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}.nav-links a:hover::after{transform:scaleX(1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;border:0;font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:.78rem;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease)}
+.btn-red{background:var(--red);color:white;box-shadow:0 14px 36px rgba(232,33,45,.24)}.btn-red:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(232,33,45,.32)}.btn-cream{background:var(--white);color:var(--ink);box-shadow:0 14px 34px rgba(91,45,24,.12)}.btn-cream:hover{transform:translateY(-3px)}
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;padding:118px clamp(18px,5vw,70px) 70px;overflow:hidden;background:radial-gradient(circle at 18% 22%,rgba(255,209,45,.55),transparent 26%),radial-gradient(circle at 82% 28%,rgba(23,137,68,.14),transparent 30%),linear-gradient(135deg,#fff7e8 0%,#f8dfb2 100%)}
+.hero::after{content:'';position:absolute;left:-8vw;right:-8vw;bottom:-11vw;height:22vw;background:var(--red);border-radius:50% 50% 0 0/100% 100% 0 0;opacity:.98}.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(320px,.98fr);gap:clamp(30px,6vw,84px);max-width:1240px;width:100%;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.68);border:1px solid rgba(91,45,24,.11);box-shadow:0 14px 36px rgba(91,45,24,.08);border-radius:999px;padding:9px 14px;margin-bottom:22px;font-weight:900;font-size:.76rem;text-transform:uppercase;letter-spacing:.12em;color:var(--green)}.dot{width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 0 6px rgba(232,33,45,.12)}
+h1{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(4.2rem,10.4vw,9.8rem);line-height:.82;letter-spacing:-.035em;text-transform:uppercase;max-width:760px}.stroke{display:block;color:transparent;-webkit-text-stroke:2px var(--ink);text-shadow:none}.fill-red{color:var(--red);text-shadow:5px 5px 0 var(--yellow)}.hero-copy{font-size:clamp(1.02rem,1.6vw,1.22rem);line-height:1.72;color:var(--muted);max-width:570px;margin:24px 0 28px}.hero-actions{display:flex;gap:14px;flex-wrap:wrap}.hero-stats{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px}.stat{padding-left:16px;border-left:3px solid var(--red)}.stat strong{display:block;font-family:'Bebas Neue';font-size:2.4rem;line-height:1}.stat span{font-size:.72rem;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);font-weight:900}.hero-visual{position:relative;min-height:560px;display:grid;place-items:center}.sun{position:absolute;width:min(34vw,430px);aspect-ratio:1;border-radius:50%;background:var(--yellow);filter:drop-shadow(0 30px 80px rgba(255,209,45,.3));animation:slowFloat 8s ease-in-out infinite}.hero-plate{position:absolute;bottom:36px;width:min(34vw,430px);height:72px;background:rgba(255,255,255,.55);border-radius:50%;filter:blur(.2px);box-shadow:0 32px 60px rgba(73,37,13,.24)}.hero-burger-img{position:relative;z-index:3;width:min(37vw,500px);max-width:94vw;border-radius:50%;filter:drop-shadow(0 42px 55px rgba(73,37,13,.36));animation:burgerFloat 5.5s ease-in-out infinite}.spice{position:absolute;z-index:4;border-radius:999px;background:var(--green);box-shadow:0 14px 28px rgba(23,137,68,.18);animation:orbit 8s ease-in-out infinite}.spice.one{width:72px;height:28px;left:7%;top:20%;transform:rotate(-18deg)}.spice.two{width:44px;height:44px;right:9%;top:17%;background:var(--red);animation-delay:-2s}.spice.three{width:92px;height:20px;right:0;bottom:26%;background:var(--yellow);animation-delay:-4s}@keyframes slowFloat{50%{transform:translateY(-14px) scale(1.03)}}@keyframes burgerFloat{50%{transform:translateY(-20px) rotate(1.5deg)}}@keyframes orbit{50%{transform:translateY(-18px) rotate(10deg)}}
+.strip{position:relative;z-index:5;background:var(--red);color:white;overflow:hidden;padding:15px 0;font-weight:1000;text-transform:uppercase;letter-spacing:.08em}.strip-track{display:flex;gap:28px;white-space:nowrap;animation:marquee 22s linear infinite}.strip-track span{display:inline-flex;align-items:center;gap:28px}.strip-track span::after{content:'★';color:var(--yellow)}@keyframes marquee{to{transform:translateX(-50%)}}
+.story-intro{padding:110px clamp(18px,5vw,70px) 40px;background:var(--cream);text-align:center}.kicker{font-weight:1000;color:var(--red);letter-spacing:.16em;text-transform:uppercase;font-size:.78rem}.story-intro h2,.section-title{font-family:'Bebas Neue';font-size:clamp(3rem,7vw,6.6rem);line-height:.86;text-transform:uppercase;letter-spacing:-.03em;margin-top:14px}.story-intro p{max-width:680px;margin:22px auto 0;line-height:1.75;color:var(--muted);font-size:1.06rem}
+.assembly{height:620vh;position:relative;background:linear-gradient(180deg,var(--cream) 0%,#ffe6b8 45%,#fff4df 100%)}.assembly-sticky{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;grid-template-columns:minmax(280px,.85fr) minmax(320px,1.15fr);align-items:center;gap:3vw;padding:92px clamp(18px,5vw,70px) 52px}.copy-stage{position:relative;min-height:430px;z-index:5}.copy-stage::before{content:'';position:absolute;top:50%;left:-26px;width:min(560px,calc(100% + 52px));height:360px;transform:translateY(-50%);border-radius:34px;background:rgba(255,253,248,.76);border:1px solid rgba(91,45,24,.12);box-shadow:0 24px 70px rgba(91,45,24,.11);backdrop-filter:blur(10px)}.step-copy{position:absolute;top:50%;left:0;width:min(510px,100%);opacity:0;visibility:hidden;z-index:0;transform:translateY(-38%);transition:opacity .16s ease,transform .16s ease,visibility 0s linear .16s;pointer-events:none}.step-copy.active{opacity:1;visibility:visible;z-index:2;transform:translateY(-50%);transition:opacity .34s var(--ease) .12s,transform .34s var(--ease) .12s,visibility 0s}.step-copy:nth-child(even){left:auto;right:0}.num{font-family:'Bebas Neue';font-size:5rem;color:rgba(232,33,45,.20);line-height:.8}.step-copy h3{font-family:'Bebas Neue';font-size:clamp(2.2rem,4.6vw,4.8rem);line-height:.85;text-transform:uppercase;margin:8px 0 16px;color:var(--ink)}.step-copy p{font-size:1.05rem;line-height:1.75;color:#5d4634;max-width:440px;font-weight:600}.burger-stage{position:relative;height:min(75vh,760px);min-height:480px;display:grid;place-items:center;perspective:1100px}.halo{position:absolute;width:min(56vw,670px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,209,45,.52),rgba(232,33,45,.14) 42%,transparent 67%);filter:blur(10px);transform:translateZ(-200px)}.plate{position:absolute;bottom:7%;width:min(44vw,560px);height:84px;background:rgba(255,255,255,.65);border:1px solid rgba(91,45,24,.12);border-radius:50%;box-shadow:var(--shadow)}.burger-part{position:absolute;left:50%;top:50%;width:var(--w);height:var(--h);margin-left:calc(var(--w)/-2);margin-top:calc(var(--h)/-2);border-radius:var(--r,999px);transform:translate3d(var(--x),var(--y),0) rotate(var(--rot)) scale(var(--s));opacity:var(--o);filter:drop-shadow(0 22px 24px rgba(71,37,13,.2));transition:none;will-change:transform,opacity}.top-bun{--w:min(43vw,520px);--h:116px;background:linear-gradient(180deg,#f4b653,#ca7628);border-radius:55% 55% 38% 38%/76% 76% 36% 36%;box-shadow:inset 0 15px 18px rgba(255,255,255,.23)}.top-bun::before{content:'';position:absolute;inset:18px 52px auto;height:15px;border-radius:999px;background:rgba(255,255,255,.18)}.seed{position:absolute;width:18px;height:7px;border-radius:50%;background:#fff6d6;box-shadow:70px 20px #fff6d6,142px -2px #fff6d6,221px 22px #fff6d6,305px 2px #fff6d6,382px 25px #fff6d6;left:42px;top:34px;transform:rotate(-16deg)}.lettuce{--w:min(45vw,545px);--h:54px;background:linear-gradient(90deg,#0f7a36,#32b65a,#0f7a36);clip-path:polygon(0 44%,7% 14%,15% 51%,24% 18%,34% 59%,44% 19%,55% 55%,65% 15%,76% 55%,87% 20%,100% 48%,100% 100%,0 100%);border-radius:16px}.tomato{--w:min(40vw,500px);--h:44px;background:linear-gradient(180deg,#ff4b48,#c91420);box-shadow:inset 0 -9px 0 rgba(87,0,0,.18)}.cheese{--w:min(42vw,530px);--h:62px;background:linear-gradient(180deg,#ffd942,#f3a914);clip-path:polygon(0 0,100% 0,96% 65%,82% 58%,72% 100%,58% 60%,44% 70%,32% 48%,21% 100%,10% 55%,0 72%);border-radius:9px}.patty{--w:min(43vw,540px);--h:82px;background:linear-gradient(180deg,#6a321b,#35160d);box-shadow:inset 0 10px 0 rgba(255,255,255,.06),inset 0 -12px 0 rgba(0,0,0,.18)}.onion{--w:min(37vw,460px);--h:44px;background:repeating-radial-gradient(ellipse at center,transparent 0 13px,rgba(123,35,126,.9) 14px 20px,transparent 21px 32px),rgba(255,255,255,.24);border:4px solid rgba(123,35,126,.75)}.sauce{--w:min(39vw,490px);--h:42px;background:linear-gradient(180deg,#ff9b51,#e75d2b);clip-path:polygon(0 0,100% 0,100% 63%,91% 48%,82% 100%,71% 48%,63% 72%,52% 44%,43% 90%,32% 46%,20% 68%,10% 42%,0 72%)}.bottom-bun{--w:min(42vw,525px);--h:88px;background:linear-gradient(180deg,#d98a38,#b75f22);border-radius:32% 32% 52% 52%/34% 34% 78% 78%;box-shadow:inset 0 -16px 18px rgba(68,29,10,.16)}
+.progress-pill{position:absolute;right:clamp(16px,3vw,44px);top:50%;transform:translateY(-50%);z-index:8;display:grid;gap:10px}.p-dot{width:10px;height:10px;border-radius:50%;background:rgba(91,45,24,.2);transition:height .25s ease,background .25s ease}.p-dot.active{height:34px;background:var(--red)}
+.menu{padding:110px clamp(18px,5vw,70px);background:var(--ink);color:var(--white);position:relative;overflow:hidden}.menu::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 15%,rgba(255,209,45,.18),transparent 28%),radial-gradient(circle at 20% 88%,rgba(232,33,45,.22),transparent 30%)}.menu-head{position:relative;z-index:1;display:flex;justify-content:space-between;gap:30px;align-items:end;max-width:1180px;margin:0 auto 36px}.menu-head p{max-width:430px;color:rgba(255,255,255,.64);line-height:1.7}.cards{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1180px;margin:0 auto}.card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:16px;overflow:hidden;transition:transform .3s var(--ease),border-color .3s ease,background .3s ease}.card:hover{transform:translateY(-8px);border-color:rgba(255,209,45,.55);background:rgba(255,255,255,.1)}.card img{width:100%;height:230px;object-fit:cover;border-radius:20px;display:block}.card h3{font-family:'Bebas Neue';font-size:2.4rem;margin:18px 4px 6px}.card p{color:rgba(255,255,255,.62);line-height:1.55;margin:0 4px 18px}.price{display:flex;align-items:center;justify-content:space-between;margin:0 4px 4px}.price strong{font-family:'Bebas Neue';font-size:2rem;color:var(--yellow)}.tag{font-size:.68rem;font-weight:1000;text-transform:uppercase;letter-spacing:.1em;background:var(--red);padding:8px 10px;border-radius:999px}.cta{padding:110px clamp(18px,5vw,70px);background:linear-gradient(135deg,var(--yellow),#ffef9a);text-align:center;position:relative;overflow:hidden}.cta::before,.cta::after{content:'';position:absolute;width:310px;aspect-ratio:1;border-radius:50%;background:rgba(232,33,45,.12)}.cta::before{left:-90px;top:-120px}.cta::after{right:-80px;bottom:-130px;background:rgba(23,137,68,.13)}.cta-inner{position:relative;z-index:1;max-width:780px;margin:auto}.cta h2{font-family:'Bebas Neue';font-size:clamp(3rem,7vw,6.5rem);line-height:.86;text-transform:uppercase}.cta p{margin:20px auto 28px;max-width:580px;line-height:1.75;color:#614416}footer{padding:34px 18px;background:var(--ink);color:rgba(255,255,255,.45);text-align:center;font-size:.86rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:900px){.nav-links{display:none}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:430px;order:-1}.hero-burger-img{width:min(76vw,430px)}.sun{width:min(72vw,390px)}.assembly{height:auto}.assembly-sticky{position:relative;height:auto;min-height:0;display:flex;flex-direction:column;padding-top:72px}.copy-stage{order:2;min-height:0;display:grid;gap:18px}.copy-stage::before{display:none}.step-copy,.step-copy:nth-child(even){position:relative;visibility:visible;top:auto;left:auto;right:auto;width:100%;opacity:1;transform:none!important;background:rgba(255,255,255,.44);border:1px solid rgba(91,45,24,.11);border-radius:24px;padding:20px}.burger-stage{width:100%;height:540px;min-height:420px;position:sticky;top:64px}.burger-part{--s:1!important;--o:1!important;--x:0px!important;--rot:0deg!important}.top-bun{--y:-172px!important}.lettuce{--y:-94px!important}.tomato{--y:-54px!important}.cheese{--y:-13px!important}.patty{--y:38px!important}.onion{--y:93px!important}.sauce{--y:125px!important}.bottom-bun{--y:164px!important}.progress-pill{display:none}.cards{grid-template-columns:1fr}.menu-head{display:block}.card img{height:210px}}
+@media(max-width:560px){.nav{padding:14px 16px}.nav .btn{display:none}h1{font-size:4.35rem}.hero{padding-top:86px}.hero-copy{font-size:.98rem}.hero-stats{gap:16px}.assembly-sticky{padding-left:14px;padding-right:14px}.burger-stage{height:430px;min-height:400px}.step-copy h3{font-size:2.6rem}.num{font-size:3.8rem}.strip-track{animation:none}.menu,.cta,.story-intro{padding-left:16px;padding-right:16px}.section-title,.story-intro h2{font-size:3.4rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.assembly{height:auto}.assembly-sticky{position:relative}.step-copy{position:relative;opacity:1;transform:none}.burger-part{opacity:1!important;transform:translate3d(0,var(--finalY),0)!important}}
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<nav class="nav">
-  <a href="#" class="logo">MY Burger</a>
+<div class="noise"></div>
+<nav class="nav" aria-label="Navigation principale">
+  <a class="logo" href="#top">MY Burger</a>
   <ul class="nav-links">
+    <li><a href="#experience">L'expérience</a></li>
     <li><a href="#menu">Menu</a></li>
-    <li><a href="#livraison">Livraison</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#commande">Commander</a></li>
   </ul>
-  <a href="https://wa.me/221771234567" class="btn btn-red">Commander</a>
+  <a class="btn btn-red" href="https://wa.me/221771234567">Commander</a>
 </nav>
 
-<section class="hero">
+<header class="hero" id="top">
   <div class="hero-grid">
     <div>
-      <div class="hero-tag reveal">Dakar</div>
-      <h1 class="reveal">Le Vrai<br><span class="red">Goût du</span><span class="yellow">Burger</span></h1>
-      <p class="reveal">Pain artisanal, viande 100% bœuf frais, sauces maison.</p>
-      <div class="reveal" style="display:flex;gap:1rem;flex-wrap:wrap">
-        <a href="#menu" class="btn btn-yellow">Voir le menu</a>
-        <a href="tel:+221771234567" class="btn" style="border:2px solid rgba(255,255,255,.2);color:#fff">Appeler</a>
+      <div class="eyebrow reveal"><span class="dot"></span>Dakar • Pain toasté • Sauce maison</div>
+      <h1 class="reveal"><span class="stroke">Le burger</span><span class="fill-red">qui se construit</span><span>couche par couche</span></h1>
+      <p class="hero-copy reveal">Une landing page plus premium, plus fluide, avec une vraie animation au scroll : chaque ingrédient arrive, le texte s'efface, le suivant apparaît, et le burger s'assemble devant vous.</p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-red" href="#experience">Voir l'animation</a>
+        <a class="btn btn-cream" href="#menu">Découvrir le menu</a>
       </div>
-      <div class="hero-stat reveal">
-        <div class="hs-item"><h4>15K</h4><p>burgers</p></div>
-        <div class="hs-item"><h4>4.9</h4><p>Note Google</p></div>
-        <div class="hs-item"><h4>30</h4><p>Min livraison</p></div>
+      <div class="hero-stats reveal" aria-label="Statistiques">
+        <div class="stat"><strong>30</strong><span>min livraison</span></div>
+        <div class="stat"><strong>4.9</strong><span>avis clients</span></div>
+        <div class="stat"><strong>100%</strong><span>fait minute</span></div>
       </div>
     </div>
-    <div class="hero-img reveal">
-      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=600&fit=crop" alt="Burger">
+    <div class="hero-visual reveal" aria-hidden="true">
+      <div class="sun"></div><div class="hero-plate"></div>
+      <span class="spice one"></span><span class="spice two"></span><span class="spice three"></span>
+      <img class="hero-burger-img" src="frames/frame_241.jpg" alt="Burger MY Burger complet">
     </div>
   </div>
+</header>
+
+<div class="strip" aria-hidden="true"><div class="strip-track"><span>MY Burger Dakar</span><span>Pain brioché</span><span>Steak grillé</span><span>Cheddar fondant</span><span>Sauce maison</span><span>MY Burger Dakar</span><span>Pain brioché</span><span>Steak grillé</span><span>Cheddar fondant</span><span>Sauce maison</span></div></div>
+
+<section class="story-intro" id="experience">
+  <div class="kicker reveal">Scroll experience</div>
+  <h2 class="reveal">Pas une montre. Un burger.</h2>
+  <p class="reveal">Même logique premium : un objet désiré, présenté pièce par pièce. Ici, les pièces sont gourmandes : pain, fraîcheur, tomate, cheddar, steak, oignons, sauce et base toastée.</p>
 </section>
 
-<section class="burger-reveal" id="experience">
-  <div class="sticky-wrap">
-    <div id="burgerLoader"><div class="spinner"></div></div>
-    <canvas id="burgerCanvas"></canvas>
-    <div class="reveal-text" id="revealText">
-      <h2>Chaque couche<br><span>compte</span></h2>
-      <p>Décomposez le goût, ingrédient par ingrédient.</p>
+<section class="assembly" id="assembly" aria-label="Animation d'assemblage du burger au scroll">
+  <div class="assembly-sticky">
+    <div class="copy-stage">
+      <article class="step-copy active" data-step="0"><div class="num">01</div><h3>Le pain brioché doré</h3><p>Moelleux, toasté, légèrement sucré : il donne au burger une première impression chaude et généreuse.</p></article>
+      <article class="step-copy" data-step="1"><div class="num">02</div><h3>La salade croquante</h3><p>Une touche verte, fraîche, locale dans l'esprit : le contraste indispensable avec le steak chaud.</p></article>
+      <article class="step-copy" data-step="2"><div class="num">03</div><h3>La tomate juteuse</h3><p>Elle apporte l'acidité, la couleur, le soleil. Simple, mais décisif pour équilibrer chaque bouchée.</p></article>
+      <article class="step-copy" data-step="3"><div class="num">04</div><h3>Le cheddar fondant</h3><p>Il descend sur le steak comme une signature visuelle : jaune, gourmand, mémorable.</p></article>
+      <article class="step-copy" data-step="4"><div class="num">05</div><h3>Le steak grillé minute</h3><p>La pièce centrale : saisie, juteuse, intense. C'est lui qui donne le caractère MY Burger.</p></article>
+      <article class="step-copy" data-step="5"><div class="num">06</div><h3>Oignons, pickles, sauce</h3><p>Le détail qui change tout : du croquant, du peps, et une sauce maison qui lie l'ensemble.</p></article>
+      <article class="step-copy" data-step="6"><div class="num">07</div><h3>Assemblé. Prêt. Chaud.</h3><p>Le burger complet apparaît : premium, lisible, appétissant, pensé pour convertir dès le premier scroll.</p></article>
     </div>
+    <div class="burger-stage" aria-hidden="true">
+      <div class="halo"></div><div class="plate"></div>
+      <div class="burger-part top-bun" data-final-y="-172"><span class="seed"></span></div>
+      <div class="burger-part lettuce" data-final-y="-94"></div>
+      <div class="burger-part tomato" data-final-y="-54"></div>
+      <div class="burger-part cheese" data-final-y="-13"></div>
+      <div class="burger-part patty" data-final-y="38"></div>
+      <div class="burger-part onion" data-final-y="93"></div>
+      <div class="burger-part sauce" data-final-y="125"></div>
+      <div class="burger-part bottom-bun" data-final-y="164"></div>
+    </div>
+    <div class="progress-pill" aria-hidden="true"><span class="p-dot active"></span><span class="p-dot"></span><span class="p-dot"></span><span class="p-dot"></span><span class="p-dot"></span><span class="p-dot"></span><span class="p-dot"></span></div>
   </div>
 </section>
 
 <section class="menu" id="menu">
-  <h2 class="reveal">Burgers & <span>Compagnie</span></h2>
-  <div class="menu-grid">
-    <div class="menu-card reveal">
-      <span class="wanted">WANTED</span>
-      <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=280&fit=crop" alt="Classic">
-      <div class="menu-body"><h4>Classic My</h4><p>Bœuf, cheddar, salade, tomate, oignon, sauce secrète.</p><div class="menu-price">3 500 FCFA</div></div>
-    </div>
-    <div class="menu-card reveal">
-      <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=280&fit=crop" alt="Double">
-      <div class="menu-body"><h4>Double Trouble</h4><p>Double steak, double cheddar, bacon croustillant, BBQ.</p><div class="menu-price">5 500 FCFA</div></div>
-    </div>
-    <div class="menu-card reveal">
-      <span class="wanted">HOT</span>
-      <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=280&fit=crop" alt="Spicy">
-      <div class="menu-body"><h4>Fire Burger</h4><p>Steak épicé, pepper jack, piments jalapeños, sauce piment.</p><div class="menu-price">4 000 FCFA</div></div>
-    </div>
-    <div class="menu-card reveal">
-      <img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=280&fit=crop" alt="Veggie">
-      <div class="menu-body"><h4>Green Beast</h4><p>Steak végétal, avocat, roquette, tomates séchées.</p><div class="menu-price">4 000 FCFA</div></div>
-    </div>
+  <div class="menu-head reveal">
+    <div><div class="kicker">Menu signature</div><h2 class="section-title">Burgers & compagnie</h2></div>
+    <p>Une carte courte, claire, visuelle : trois offres fortes pour faciliter le choix et pousser la commande WhatsApp.</p>
+  </div>
+  <div class="cards">
+    <article class="card reveal"><img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=900&h=700&fit=crop" alt="Classic MY Burger"><h3>Classic MY</h3><p>Bœuf, cheddar, salade, tomate, oignon, sauce maison.</p><div class="price"><strong>3 500 FCFA</strong><span class="tag">Best</span></div></article>
+    <article class="card reveal"><img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=900&h=700&fit=crop" alt="Double Trouble Burger"><h3>Double Trouble</h3><p>Double steak, double cheddar, pickles, sauce fumée.</p><div class="price"><strong>5 500 FCFA</strong><span class="tag">Max</span></div></article>
+    <article class="card reveal"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=900&h=700&fit=crop" alt="Fire Burger épicé"><h3>Fire Dakar</h3><p>Steak épicé, cheddar, piments, sauce rouge maison.</p><div class="price"><strong>4 000 FCFA</strong><span class="tag">Hot</span></div></article>
   </div>
 </section>
 
-<section class="livraison" id="livraison">
-  <div class="reveal">
-    <h2>Livraison <span style="color:var(--yellow)">Partout</span></h2>
-    <p>De Almadies à Pikine, on vous livre chaud en 30 minutes max.</p>
-    <a href="https://wa.me/221771234567" class="btn btn-red">Commander sur WhatsApp</a>
-    <div class="liv-zone">
-      <div class="zone-tag">Almadies</div><div class="zone-tag">Mermoz</div><div class="zone-tag">Ouakam</div>
-      <div class="zone-tag">Plateau</div><div class="zone-tag">Médina</div><div class="zone-tag">Pikine</div>
-    </div>
+<section class="cta" id="commande">
+  <div class="cta-inner reveal">
+    <div class="kicker">Livraison Dakar</div>
+    <h2>Votre burger arrive chaud.</h2>
+    <p>Almadies, Ouakam, Mermoz, Plateau, Médina, Pikine : une commande simple, un message WhatsApp, et la gourmandise arrive.</p>
+    <a class="btn btn-red" href="https://wa.me/221771234567">Commander sur WhatsApp</a>
   </div>
 </section>
-
-<footer>© 2026 MY Burger Dakar — Livraison 7j/7.</footer>
+<footer>© 2026 MY Burger Dakar — Landing page animée, responsive et optimisée mobile.</footer>
 
 <script>
-// ===== NAV SCROLL =====
-window.addEventListener('scroll',()=>document.querySelector('.nav').classList.toggle('scrolled',window.scrollY>50));
+const nav=document.querySelector('.nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('visible');revealObs.unobserve(e.target);});},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
 
-// ===== REVEAL ANIMATIONS =====
-const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.transition='opacity .7s ease, transform .7s ease'; e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; obs.unobserve(e.target);} });
-},{threshold:.1});
-reveals.forEach(r=>obs.observe(r));
-
-// ===== APPLE-STYLE SCROLL-REACTIVE TILED FRAMES =====
 (function(){
-  const canvas = document.getElementById('burgerCanvas');
-  const loader = document.getElementById('burgerLoader');
-  const revealText = document.getElementById('revealText');
-  const section = document.querySelector('.burger-reveal');
-  if(!canvas || !section) return;
-
-  const ctx = canvas.getContext('2d', { alpha: false });
-  const TOTAL_FRAMES = 241;
-
-  // Detect mobile more reliably
-  const isMobile = window.innerWidth < 768 || /iPhone|iPad|iPod|Android/.test(navigator.userAgent);
-  const cols = isMobile ? 5 : 10;
-  const rows = isMobile ? 5 : 10;
-  const maxDPR = isMobile ? 1 : 2; // Force DPR 1 on mobile = massive perf gain
-
-  // Tile data: just offset + delay, NO rotation (too expensive on mobile GPU)
-  const tiles = [];
-  for(let i=0;i<cols*rows;i++){
-    const cx = (i % cols) / Math.max(1, cols-1);
-    const cy = Math.floor(i / cols) / Math.max(1, rows-1);
-    const dist = Math.sqrt((cx-0.5)*(cx-0.5) + (cy-0.5)*(cy-0.5));
-    tiles.push({
-      ox: (Math.random()-0.5)* (isMobile ? 80 : 180),
-      oy: (Math.random()-0.5)* (isMobile ? 80 : 180),
-      delay: dist * 0.38 + Math.random()*0.08
+  const section=document.querySelector('.assembly');
+  const parts=[...document.querySelectorAll('.burger-part')];
+  const copies=[...document.querySelectorAll('.step-copy')];
+  const dots=[...document.querySelectorAll('.p-dot')];
+  if(!section||!parts.length)return;
+  const isMobile=matchMedia('(max-width:900px)').matches;
+  if(isMobile){
+    parts.forEach(p=>{p.style.setProperty('--x','0px');p.style.setProperty('--y',p.dataset.finalY+'px');p.style.setProperty('--rot','0deg');p.style.setProperty('--s','1');p.style.setProperty('--o','1');});
+    return;
+  }
+  const starts=[
+    {x:-260,y:-340,rot:-12},{x:260,y:-250,rot:8},{x:-310,y:-120,rot:10},{x:330,y:30,rot:-8},
+    {x:-280,y:170,rot:6},{x:240,y:260,rot:-12},{x:-190,y:330,rot:9},{x:220,y:420,rot:0}
+  ];
+  let target=0,current=0,raf=0;
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const ease=t=>1-Math.pow(1-t,3);
+  function measure(){
+    const rect=section.getBoundingClientRect();
+    const max=section.offsetHeight-innerHeight;
+    target=clamp(-rect.top/max,0,1);
+  }
+  function render(){
+    raf=requestAnimationFrame(render);
+    current+=(target-current)*.14;
+    const totalSteps=copies.length;
+    const active=clamp(Math.round(current*(totalSteps-1)),0,totalSteps-1);
+    copies.forEach((c,i)=>c.classList.toggle('active',i===active));
+    dots.forEach((d,i)=>d.classList.toggle('active',i===active));
+    parts.forEach((p,i)=>{
+      const introStart=i*.085;
+      const introEnd=introStart+.36;
+      const t=ease(clamp((current-introStart)/(introEnd-introStart),0,1));
+      const fy=parseFloat(p.dataset.finalY||0);
+      const st=starts[i]||{x:0,y:0,rot:0};
+      const x=st.x*(1-t);
+      const y=st.y*(1-t)+fy*t;
+      const rot=st.rot*(1-t);
+      const s=.82+.18*t;
+      p.style.setProperty('--x',x.toFixed(2)+'px');
+      p.style.setProperty('--y',y.toFixed(2)+'px');
+      p.style.setProperty('--rot',rot.toFixed(2)+'deg');
+      p.style.setProperty('--s',s.toFixed(3));
+      p.style.setProperty('--o',String(clamp(t*1.3,0,1)));
     });
   }
-
-  let dpr = Math.min(window.devicePixelRatio || 1, maxDPR);
-  let W = window.innerWidth;
-  let H = window.innerHeight;
-
-  function resize(){
-    dpr = Math.min(window.devicePixelRatio || 1, maxDPR);
-    W = window.innerWidth;
-    H = window.innerHeight;
-    canvas.width = Math.floor(W * dpr);
-    canvas.height = Math.floor(H * dpr);
-    canvas.style.width = W + 'px';
-    canvas.style.height = H + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  // ===== FRAME LOADING (parallel, no batching) =====
-  const images = new Array(TOTAL_FRAMES);
-  let loadedCount = 0;
-  let allReady = false;
-
-  function onImgReady(){
-    loadedCount++;
-    if(loadedCount >= TOTAL_FRAMES){
-      allReady = true;
-      if(loader){ loader.style.opacity='0'; setTimeout(()=>loader.remove(), 500); }
-    }
-  }
-
-  // Load first 30 immediately for fast start, rest in background
-  for(let i=0; i<TOTAL_FRAMES; i++){
-    const img = new Image();
-    img.decoding = 'async';
-    img.src = 'frames/frame_' + String(i+1).padStart(3,'0') + '.jpg';
-    img.onload = onImgReady;
-    img.onerror = onImgReady;
-    images[i] = img;
-  }
-
-  // ===== SCROLL PROGRESS =====
-  let progress = 0;
-  let targetProgress = 0;
-
-  function updateScroll(){
-    const rect = section.getBoundingClientRect();
-    const sectionH = section.offsetHeight - window.innerHeight;
-    targetProgress = Math.max(0, Math.min(1, -rect.top / sectionH));
-  }
-  window.addEventListener('scroll', updateScroll, {passive:true});
-  updateScroll();
-
-  // ===== INTERSECTION OBSERVER: PAUSE RAF WHEN OFFSCREEN =====
-  let isVisible = false;
-  const visObs = new IntersectionObserver((entries)=>{
-    isVisible = entries[0].isIntersecting;
-  }, {threshold:0});
-  visObs.observe(section);
-
-  // ===== RENDER LOOP =====
-  let rafId = 0;
-  const lerpSpeed = isMobile ? 0.25 : 0.35;
-
-  function draw(){
-    rafId = requestAnimationFrame(draw);
-    if(!isVisible || !allReady) return;
-
-    progress += (targetProgress - progress) * lerpSpeed;
-    const frameIndex = Math.min(TOTAL_FRAMES-1, Math.floor(progress * TOTAL_FRAMES));
-    const img = images[frameIndex];
-    if(!img || !img.complete || img.naturalWidth === 0) return;
-
-    const imgW = img.naturalWidth;
-    const imgH = img.naturalHeight;
-    const vScale = Math.max(W/imgW, H/imgH);
-    const vW = imgW * vScale;
-    const vH = imgH * vScale;
-    const vX = (W - vW)/2;
-    const vY = (H - vH)/2;
-
-    ctx.clearRect(0, 0, W, H);
-
-    const tileW = W / cols;
-    const tileH = H / rows;
-    const p = Math.max(0, Math.min(1, progress));
-
-    for(let r=0; r<rows; r++){
-      for(let c=0; c<cols; c++){
-        const i = r*cols + c;
-        const t = tiles[i];
-        const localP = Math.max(0, Math.min(1, (p - t.delay) / Math.max(0.05, (1 - t.delay))));
-        const ease = 1 - Math.pow(1-localP, 3);
-
-        const dx = c*tileW + t.ox*(1-ease);
-        const dy = r*tileH + t.oy*(1-ease);
-        const sc = 0.3 + 0.7*ease;
-        const alpha = ease;
-
-        const srcX = vX + c*(vW/cols);
-        const srcY = vY + r*(vH/rows);
-        const srcW = vW/cols;
-        const srcH = vH/rows;
-
-        // Simplified: no rotation (saves GPU), just translate + scale
-        const tw = tileW*sc;
-        const th = tileH*sc;
-        ctx.globalAlpha = alpha;
-        ctx.drawImage(
-          img,
-          srcX, srcY, srcW, srcH,
-          dx + (tileW-tw)/2, dy + (tileH-th)/2, tw, th
-        );
-      }
-    }
-    ctx.globalAlpha = 1;
-
-    // Text reveal via CSS class (GPU-composited, not JS)
-    if(revealText){
-      if(p > 0.82) revealText.classList.add('visible');
-      else revealText.classList.remove('visible');
-    }
-  }
-
-  requestAnimationFrame(draw);
+  addEventListener('scroll',measure,{passive:true});
+  addEventListener('resize',measure,{passive:true});
+  measure();render();
 })();
 </script>
 </body>
